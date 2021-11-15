@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <style>
+        body{
+
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center center;
+            background-attachment: fixed;
+            text-align-all: center;}
+        button{
+            font-family: arvo;
+            background-color: deepskyblue;
+            font-size: 16px;
+            border-radius: 4px;/*zaokręglone rogi*/
+            transition-duration: 0.4s; /*czas trwania animacji*/
+        }
+        button:hover {
+            background-color: white;
+        }
+    </style>
+    <meta charset="UTF-8">
+    <title>lek. wet. Adam Gawryś</title>
+    <link  th:href="@{/css/style.css}" rel="stylesheet"/>
+</head>
+<body>
+
+<link href="https://fonts.googleapis.com/css?family=Arvo&display=swap" rel="stylesheet">
+<nav role="navigation" class="primary-navigation">
+    <ul>
+        <li><a href="../">Strona główna</a></li>
+        <li><a href="/info">O nas</a>
+            <ul class="dropdown">
+                <li><a href="/robert">lek. wet. Robert Głośnicki</a></li>
+                <li><a href="/dawid">lek. wet. Dawid Kleina</a></li>
+                <li><a href="/adam">lek. wet. Adam Gawryś</a></li>
+            </ul>
+        </li>
+        <li><a href="/register">Rejestracja</a></li>
+        <li><a href="/register">Logowanie</a></li>
+        <li><a href="/contact">Kontakt</a></li>
+        <li><a href="/reservation"><button>Rezerwacja wizyty</button></a></li>
+    </ul>
+</nav>
+<h1>lek. wet. Adam Gawryś jest to wykwalifikowany lekarz weterynarz bla bla bla</h1>
+<img src="adam.gif" alt="lek. wet. Adam Gawryś">
+
+</body>
+</html>
