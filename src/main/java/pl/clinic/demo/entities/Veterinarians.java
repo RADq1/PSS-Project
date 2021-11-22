@@ -16,7 +16,12 @@ public class Veterinarians {
     @Column
     String specialty;
 
-    public Veterinarians(String name, String surName, String specialty) {
+    @ManyToOne
+    @JoinColumn(name="visit")
+    private Visits visit;
+
+    public Veterinarians(Long id, String name, String surName, String specialty) {
+        this.idVeterinarian = id;
         this.name = name;
         this.surName = surName;
         this.specialty = specialty;

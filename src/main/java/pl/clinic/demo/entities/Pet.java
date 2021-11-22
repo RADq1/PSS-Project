@@ -1,7 +1,13 @@
 package pl.clinic.demo.entities;
 
+import org.apache.catalina.User;
+import pl.clinic.demo.enums.Pets;
+
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
 
 @Entity
 public class Pet {
@@ -13,6 +19,8 @@ public class Pet {
     String name;
     @Column
     LocalDate dateOfBirth;
+    @Column
+    Pets pets;
 
     public Pet() {
     }
@@ -22,6 +30,18 @@ public class Pet {
         this.name = name;
         this.dateOfBirth = dateOfBirth;
     }
+
+    //Relacja z users
+    @OneToMany(cascade = CascadeType.MERGE, mappedBy = "petsList")
+    //private List<Users> usersList = new ArrayList<>();
+    private Set<Users> users;
+
+    //Relacja z visits
+    @ManyToOne
+    @JoinColumn(name="visitList")
+    private Visits visits;
+
+
 
     public Long getIdPet() {
         return idPet;

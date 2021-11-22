@@ -1,6 +1,7 @@
 package pl.clinic.demo.entities;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -21,11 +22,12 @@ public class Users {
     @Column
     String email;
 
-    //RELACJE
-    @OneToMany
-    private List<Visits> visitsList;
-    //Jeden uzytkownik moze miec wiele wizyt, a jedna wizyta
-    //moze byc przypisana do jednego uzytkownika
+    //RELACJA UZYTKOWNIKA ZE ZWIERZETAMI
+    //Uzytkownik moze miec wiele zwierzat, a jeden zwierzak moze byc przypisany do jednego wlasciciela
+    @ManyToOne
+    @JoinColumn(name="petsList")
+    private Pet petsList;
+
     public Users() {
     }
 
