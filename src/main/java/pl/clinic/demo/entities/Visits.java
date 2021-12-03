@@ -33,6 +33,13 @@ public class Visits {
         this.gatunek = gatunek;
     }
 
+    public Visits(LocalDateTime dateTime, String imie, String opis, String gatunek) {
+        this.dateTime = dateTime;
+        this.imie = imie;
+        this.opis = opis;
+        this.gatunek = gatunek;
+    }
+
     public Visits() {
     }
 

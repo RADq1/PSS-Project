@@ -2,20 +2,21 @@ package pl.clinic.demo.front;
 
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
-import com.vaadin.flow.component.html.*;
+import com.vaadin.flow.component.formlayout.FormLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.tabs.Tab;
 import com.vaadin.flow.component.tabs.Tabs;
+import com.vaadin.flow.component.textfield.PasswordField;
+import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.spring.annotation.SpringComponent;
 import com.vaadin.flow.spring.annotation.UIScope;
 
 import javax.annotation.PostConstruct;
-
 @UIScope
 @SpringComponent
-@Route("aboutUs") //sciezka
-public class AboutUs extends VerticalLayout {
+@Route("login") //sciezka
+public class LoginPage extends VerticalLayout {
 
     Button reservationButton;
     @PostConstruct
@@ -38,19 +39,14 @@ public class AboutUs extends VerticalLayout {
         login.getElement().addEventListener("click", event -> {
             UI.getCurrent().getPage().setLocation("/login");
         });
-
         Tabs tabs = new Tabs(home, register, aboutUs, login);
         add(tabs);
 
-        //TODO OPIS LEKARZY, LECZNICY WETERYNARYJNEJ ITP.
+        //TODO LOGOWANIE
+        TextField username = new TextField("Username");
+        TextField password = new TextField("Password");
 
-        H3 h3 = new H3("Lekarze kliniki weterynaryjnej w Fordonie");
-        add(h3);
-        Image image = new Image("https://i.imgur.com/gtU3dRG.png","Doktor Adam");
-        image.setMaxHeight("400px");
-        image.setMaxWidth("400px");
-        H5 h5 = new H5("lek. wet. Adam Krzysztof Gawryś | Specjalista chorób psów i kotów – Dermatologia / USG / Interna");
-        add(image, h5);
-        //https://i.imgur.com/iIaBW0F.gif
+        add(username, password);
     }
+
 }

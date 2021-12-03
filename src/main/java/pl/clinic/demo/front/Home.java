@@ -27,6 +27,7 @@ public class Home extends VerticalLayout{
             Tab home = new Tab("Strona główna");
             Tab register = new Tab("Rejestracja");
             Tab aboutUs = new Tab("O nas");
+            Tab login = new Tab("Logowanie");
             home.getElement().addEventListener("click", event -> {
                 UI.getCurrent().getPage().setLocation("/");
             });
@@ -36,8 +37,11 @@ public class Home extends VerticalLayout{
             aboutUs.getElement().addEventListener("click", event -> {
                 UI.getCurrent().getPage().setLocation("/aboutUs");
             });
+            login.getElement().addEventListener("click", event -> {
+                UI.getCurrent().getPage().setLocation("/login");
+            });
 
-            Tabs tabs = new Tabs(home, register, aboutUs);
+            Tabs tabs = new Tabs(home, register, aboutUs, login);
             add(tabs);
 
             //przekierowanie do rezerwacji
