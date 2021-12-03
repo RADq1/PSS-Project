@@ -1,5 +1,7 @@
 package pl.clinic.demo.entities;
 
+//import pl.clinic.demo.enums.Gatunki;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 
@@ -13,14 +15,28 @@ public class Pet {
     String name;
     @Column
     LocalDate dateOfBirth;
+//    @Enumerated(EnumType.STRING)
+//    @Column
+//    Gatunki gatunki;
+    @Column
+    String gatunki;
 
     public Pet() {
     }
 
-    public Pet(Long idPet, String name, LocalDate dateOfBirth) {
+    public String getGatunki() {
+        return gatunki;
+    }
+
+    public void setGatunki(String gatunki) {
+        this.gatunki = gatunki;
+    }
+
+    public Pet(Long idPet, String name, LocalDate dateOfBirth, String gatunki) {
         this.idPet = idPet;
         this.name = name;
         this.dateOfBirth = dateOfBirth;
+        this.gatunki = gatunki;
     }
 
     public Long getIdPet() {
