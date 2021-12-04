@@ -29,6 +29,14 @@ public class Users {
     public Users() {
     }
 
+    public Users(String name, String surName, String login, String password, String email) {
+        this.name = name;
+        this.surName = surName;
+        this.login = login;
+        this.password = password;
+        this.email = email;
+    }
+
     public Users(Long idUser, String name, String surName, String login, String password, String email) {
         this.idUser = idUser;
         this.name = name;

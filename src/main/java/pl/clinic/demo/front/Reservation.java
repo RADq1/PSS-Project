@@ -15,7 +15,6 @@ import com.vaadin.flow.spring.annotation.UIScope;
 import org.springframework.beans.factory.annotation.Autowired;
 import pl.clinic.demo.entities.Pet;
 import pl.clinic.demo.entities.Visits;
-import pl.clinic.demo.services.PetService;
 import pl.clinic.demo.services.ReservationService;
 
 import javax.annotation.PostConstruct;
@@ -81,11 +80,6 @@ public class Reservation extends VerticalLayout {
             }
         });
         add(button);
-
-//        dateTimePicker.getTimePlaceholder();
-//        time = dateTimePicker.getTimePlaceholder();
-
-
 
     }
 }

@@ -47,6 +47,11 @@ public class LoginPage extends VerticalLayout {
         TextField password = new TextField("Password");
 
         add(username, password);
+
+        Button btnLogin = new Button("Zaloguj się");
+
+        btnLogin.addClickListener(event -> {});
+
     }
 
 }
