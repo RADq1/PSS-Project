@@ -3,6 +3,7 @@ package pl.clinic.demo.front;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.datetimepicker.DateTimePicker;
+import com.vaadin.flow.component.html.Image;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.tabs.Tab;
 import com.vaadin.flow.component.tabs.Tabs;
@@ -28,6 +29,7 @@ public class Home extends VerticalLayout{
             Tab register = new Tab("Rejestracja");
             Tab aboutUs = new Tab("O nas");
             Tab login = new Tab("Logowanie");
+            Tab panelAdmin = new Tab("Panel admin");
             home.getElement().addEventListener("click", event -> {
                 UI.getCurrent().getPage().setLocation("/");
             });
@@ -40,15 +42,23 @@ public class Home extends VerticalLayout{
             login.getElement().addEventListener("click", event -> {
                 UI.getCurrent().getPage().setLocation("/login");
             });
+            panelAdmin.getElement().addEventListener("click", event -> {
+                UI.getCurrent().getPage().setLocation("/panelAdmin");
+            });
 
-            Tabs tabs = new Tabs(home, register, aboutUs, login);
+            Tabs tabs = new Tabs(home, register, aboutUs, login, panelAdmin);
             add(tabs);
-
+            Image image = new Image("https://static.oferteo.pl/images/portfolio/4656059/orig/615rijvc8v7-106706554-3251271181591909-2256940885905921326-o.jpg", "klinika");
             //przekierowanie do rezerwacji
+            image.setMaxHeight("400px");
+            image.setMaxWidth("400px");
+
             reservationButton = new Button("Rezerwacja wizyty bez rejestracji");
             reservationButton.addClickListener(c->{
                 UI.getCurrent().getPage().setLocation("/reservation");
             });
-            add(reservationButton);
+            add(image, reservationButton);
+
+
         }
     }

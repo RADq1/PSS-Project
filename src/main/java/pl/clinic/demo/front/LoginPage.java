@@ -21,6 +21,7 @@ import com.vaadin.flow.spring.annotation.SpringComponent;
 import com.vaadin.flow.spring.annotation.UIScope;
 import org.springframework.beans.factory.annotation.Autowired;
 import pl.clinic.demo.entities.Users;
+import pl.clinic.demo.entities.Veterinarians;
 import pl.clinic.demo.entities.Visits;
 import pl.clinic.demo.services.ReservationService;
 import pl.clinic.demo.services.UserService;
@@ -90,9 +91,12 @@ public class LoginPage extends VerticalLayout {
 
         comboBox.setItems("Pies", "Kot", "Papuga");
 
+        chooseVet.setItems(reservationService.nameVet());
+
         dateTimePicker.setLabel("Wybierz datę wizyty");
         dateTimePicker.setStep(Duration.ofMinutes(20));
         dateTimePicker.setValue(LocalDateTime.of(2021, 12, 7, 12, 20, 0));
+        dateTimePicker.setMin(LocalDateTime.of(2021,12, 7, 12, 0, 0));
         button = new Button("Rezerwacja");
 
             button.addClickListener(c->{
@@ -107,7 +111,7 @@ public class LoginPage extends VerticalLayout {
 //                    System.out.println(opis.getValue());
 //                    System.out.println(comboBox.getValue().toString());
 //                    System.out.println(user.getLogin());
-                    Visits visits = new Visits(dateTimePicker.getValue(), imie.getValue(), opis.getValue(), comboBox.getValue().toString(), user);
+                    Visits visits = new Visits(dateTimePicker.getValue(), imie.getValue(), opis.getValue(), comboBox.getValue().toString(),(Veterinarians) chooseVet.getValue(), user);
                     reservationService.addReservationWithoutLogin(visits);
 //                    System.out.println(visits);
                     Notification.show("Gratulacje, udalo sie zarezerwować wizytę!");
@@ -117,7 +121,7 @@ public class LoginPage extends VerticalLayout {
         reservationButton.addClickListener(event -> {
             removeAll();
 //            remove(imie, opis, dateTimePicker, comboBox, button, backButton);
-            add(imie, opis, dateTimePicker, comboBox, button, backButton);
+            add(imie, opis, dateTimePicker, comboBox,chooseVet, button, backButton);
         });
         //LOGOUT
         logout.addClickListener(event -> {
@@ -134,9 +138,8 @@ public class LoginPage extends VerticalLayout {
         //PANEL HISTORIA PUPILA
         historyButton.addClickListener(event -> {
             removeAll();
-            add(logout, reservationButton, historyButton);
-
             H1 h1 = new H1("Historia wizyt Twojego zwierzaka/ów " + user.getName());
+            add(logout, reservationButton, historyButton);
 
             //TODO Wyswietlanie zwierzaków pobranych z tabeli Visits
             List<Visits> visitsList = userService.findPetsForUser(user);
@@ -148,6 +151,7 @@ public class LoginPage extends VerticalLayout {
             grid.addColumn(Visits::getDateTime).setHeader("Data oraz godzina wizyty");
             grid.addColumn(Visits::getGatunek).setHeader("Gatunek");
             grid.addColumn(Visits::getOpis).setHeader("Opis/Objawy");
+            grid.addColumn(Visits::getVet).setHeader("Weterynarz:");
 
             add(grid,h1,backButton);
         });

@@ -13,9 +13,9 @@ public class StaleWBazieDanych {
     CommandLineRunner addRecords(VeterinarianRepo veterinarianRepo)
     {
         return args -> {
-            veterinarianRepo.save(new Veterinarians("Robert", "Głośnicki", "Neurologia"));
-            veterinarianRepo.save(new Veterinarians("Dawid", "Kleina", "Dermatologia"));
-            veterinarianRepo.save(new Veterinarians("Adam", "Gawryś", "Okulistyka"));
+//            veterinarianRepo.save(new Veterinarians("Robert", "Głośnicki", "Neurologia"));
+//            veterinarianRepo.save(new Veterinarians("Dawid", "Kleina", "Dermatologia"));
+//            veterinarianRepo.save(new Veterinarians("Adam", "Gawryś", "Okulistyka"));
         };
     }
 

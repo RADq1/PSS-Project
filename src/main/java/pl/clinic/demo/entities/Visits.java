@@ -24,6 +24,17 @@ public class Visits {
     @JoinColumn(name = "user")
     private Users user;
 
+    public Veterinarians getVet() {
+        return vet;
+    }
+
+    public void setVet(Veterinarians vet) {
+        this.vet = vet;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "vet")
+    private Veterinarians vet;
 
     public Visits(Long idVisit, LocalDateTime dateTime, String imie, String opis, String gatunek) {
         this.idVisit = idVisit;
@@ -33,23 +44,45 @@ public class Visits {
         this.gatunek = gatunek;
     }
 
+//    //konstruktor do rejestracji wizyt bez rejestracji konta
+//    public Visits(LocalDateTime dateTime, String imie, String opis, String gatunek) {
+//        this.dateTime = dateTime;
+//        this.imie = imie;
+//        this.opis = opis;
+//        this.gatunek = gatunek;
+//    }
+//
+//    //konstruktor do rejestracji wizyt po zalogowaniu
+//    //Visits visits = new Visits(dateTimePicker.getValue(), imie.getValue(), opis.getValue(), comboBox.getValue().toString(), user);
+//    public Visits(LocalDateTime dateTime, String imie, String opis, String gatunek, Users user) {
+//        this.dateTime = dateTime;
+//        this.imie = imie;
+//        this.opis = opis;
+//        this.gatunek = gatunek;
+//        this.user = user;
+//    }
+
     //konstruktor do rejestracji wizyt bez rejestracji konta
-    public Visits(LocalDateTime dateTime, String imie, String opis, String gatunek) {
+    public Visits(LocalDateTime dateTime, String imie, String opis, String gatunek, Veterinarians vet) {
         this.dateTime = dateTime;
         this.imie = imie;
         this.opis = opis;
         this.gatunek = gatunek;
+        this.vet = vet;
     }
 
     //konstruktor do rejestracji wizyt po zalogowaniu
     //Visits visits = new Visits(dateTimePicker.getValue(), imie.getValue(), opis.getValue(), comboBox.getValue().toString(), user);
-    public Visits(LocalDateTime dateTime, String imie, String opis, String gatunek, Users user) {
+    public Visits(LocalDateTime dateTime, String imie, String opis, String gatunek,Veterinarians vet, Users user) {
         this.dateTime = dateTime;
         this.imie = imie;
         this.opis = opis;
         this.gatunek = gatunek;
         this.user = user;
+        this.vet = vet;
     }
+
+
 
 
     public Visits() {

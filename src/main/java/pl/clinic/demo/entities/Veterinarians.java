@@ -1,6 +1,7 @@
 package pl.clinic.demo.entities;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class Veterinarians {
@@ -15,6 +16,27 @@ public class Veterinarians {
     String surName;
     @Column
     String specialty;
+    @Column
+    String password;
+
+    @OneToMany
+    private List<Visits> visitsList;
+
+    public List<Visits> getVisitsList() {
+        return visitsList;
+    }
+
+    public void setVisitsList(List<Visits> visitsList) {
+        this.visitsList = visitsList;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
     public Veterinarians(String name, String surName, String specialty) {
         this.name = name;
@@ -55,5 +77,10 @@ public class Veterinarians {
 
     public void setSpecialty(String specialty) {
         this.specialty = specialty;
+    }
+
+    @Override
+    public String toString() {
+        return name;
     }
 }

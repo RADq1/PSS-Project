@@ -65,7 +65,7 @@ public class Register extends VerticalLayout {
         add(firstName,lastName,username,password, email); // confirmPassword
 
 
-        button = new Button("Rezerwacja");
+        button = new Button("Rejestracja");
         button.addClickListener(c->{
 
                 Optional emailToCheck = userService.checkEmail(email.getValue());

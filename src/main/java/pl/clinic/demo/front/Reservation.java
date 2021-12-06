@@ -14,6 +14,7 @@ import com.vaadin.flow.spring.annotation.SpringComponent;
 import com.vaadin.flow.spring.annotation.UIScope;
 import org.springframework.beans.factory.annotation.Autowired;
 import pl.clinic.demo.entities.Pet;
+import pl.clinic.demo.entities.Veterinarians;
 import pl.clinic.demo.entities.Visits;
 import pl.clinic.demo.services.ReservationService;
 
@@ -23,6 +24,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Optional;
 
 @UIScope
 @SpringComponent
@@ -38,6 +40,7 @@ public class Reservation extends VerticalLayout {
     DateTimePicker dateTimePicker = new DateTimePicker();
 
     ComboBox comboBox = new ComboBox<>("Gatunek");
+    ComboBox chooseVet = new ComboBox<>("Weterynarz");
 
     @PostConstruct
     private void init(){
@@ -59,10 +62,17 @@ public class Reservation extends VerticalLayout {
 
         comboBox.setItems("Pies", "Kot", "Papuga");
         add(comboBox);
+        //wyciagniecie z bazy imiona weterynarzy
+
+        chooseVet.setItems(reservationService.nameVet());
+        add(chooseVet);
+
+
 
         dateTimePicker.setLabel("Wybierz datę wizyty");
         dateTimePicker.setStep(Duration.ofMinutes(20));
         dateTimePicker.setValue(LocalDateTime.of(2021, 12, 7, 12, 20, 0));
+        dateTimePicker.setMin(LocalDateTime.of(2021,12, 7, 12, 0, 0));
         add(dateTimePicker);
         button = new Button("Rezerwacja");
             button.addClickListener(c->{
@@ -72,7 +82,7 @@ public class Reservation extends VerticalLayout {
                     return;
                 }
                 else {
-                    Visits visits = new Visits(dateTimePicker.getValue(), imie.getValue(), opis.getValue(), comboBox.getValue().toString());
+                    Visits visits = new Visits(dateTimePicker.getValue(), imie.getValue(), opis.getValue(), comboBox.getValue().toString(), (Veterinarians) chooseVet.getValue());
                     reservationService.addReservationWithoutLogin(visits);
                     Notification.show("Gratulacje, udalo sie zarezerwować wizytę!");
                     UI.getCurrent().getPage().setLocation("/");

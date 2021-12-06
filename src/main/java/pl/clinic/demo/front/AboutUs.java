@@ -52,10 +52,10 @@ public class AboutUs extends VerticalLayout {
         Span name = new Span("lek. wet. Adam Krzysztof Gawryś");
         Span email = new Span("adagaw@wp.pl");
         Span specialization = new Span("Specjalista chorób psów i kotów – Dermatologia / USG / Interna");
-        Image image = new Image("https://i.imgur.com/gtU3dRG.png","Doktor Adam");
+        Image image = new Image("https://i.imgur.com/w29AQxm.png","Doktor Adam");
         image.setMaxHeight("400px");
         image.setMaxWidth("400px");
-
+        //https://i.imgur.com/gtU3dRG.png
         VerticalLayout adamLayout = new VerticalLayout(name, email,specialization,image);
         adamLayout.setSpacing(false);
         adamLayout.setPadding(false);
@@ -69,7 +69,8 @@ public class AboutUs extends VerticalLayout {
         Span name1 = new Span("lek. wet. Robert Głośnicki");
         Span email1 = new Span("robglo@wp.pl");
         Span specialization1 = new Span("Specjalista chorób psów i kotów – Patomorfolog / Operacje zabiegowe");
-        Image robert  = new Image("https://i.imgur.com/0waVci8.jpg", "Doktorek Robert");
+        Image robert  = new Image("https://i.imgur.com/dkM4qSt.png", "Doktorek Robert");
+        //https://i.imgur.com/0waVci8.jpg
         robert.setMaxHeight("400px");
         robert.setMaxWidth("400px");
         VerticalLayout robertLayout = new VerticalLayout(name1, email1,specialization1, robert);
