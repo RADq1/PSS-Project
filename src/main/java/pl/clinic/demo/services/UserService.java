@@ -1,17 +1,24 @@
 package pl.clinic.demo.services;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pl.clinic.demo.entities.Users;
+import pl.clinic.demo.entities.Visits;
 import pl.clinic.demo.repo.UserRepo;
+import pl.clinic.demo.repo.VisitRepo;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
 public class UserService {
     private final UserRepo userRepo;
+    @Autowired
+    private final VisitRepo visitRepo;
 
-    public UserService(UserRepo userRepo) {
+    public UserService(UserRepo userRepo, VisitRepo visitRepo) {
         this.userRepo = userRepo;
+        this.visitRepo = visitRepo;
     }
 
     public void registerUser(Users users){
@@ -27,9 +34,9 @@ public class UserService {
     {
         return userRepo.findByLogin(login);
     }
-    public Optional<Users> checkPassword(String password)
-    {
-        return userRepo.findByPassword(password);
+
+    public List<Visits> findPetsForUser(Users user){
+        return visitRepo.findByUser(user);
     }
 
 

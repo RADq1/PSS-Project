@@ -65,20 +65,20 @@ public class Reservation extends VerticalLayout {
         dateTimePicker.setValue(LocalDateTime.of(2021, 12, 7, 12, 20, 0));
         add(dateTimePicker);
         button = new Button("Rezerwacja");
+            button.addClickListener(c->{
+                if(imie.getValue() == null && opis.getValue() == null && comboBox.getValue().toString() == null)
+                {
+                    Notification.show("Sprawdź wszystkie pola zanim zarezerwujesz wizytę!");
+                    return;
+                }
+                else {
+                    Visits visits = new Visits(dateTimePicker.getValue(), imie.getValue(), opis.getValue(), comboBox.getValue().toString());
+                    reservationService.addReservationWithoutLogin(visits);
+                    Notification.show("Gratulacje, udalo sie zarezerwować wizytę!");
+                    UI.getCurrent().getPage().setLocation("/");
+                }
+            });
 
-        button.addClickListener(c->{
-            if(imie.getValue() == null && opis.getValue() == null && comboBox.getValue().toString() == null)
-            {
-                Notification.show("Sprawdź wszystkie pola zanim zarezerwujesz wizytę!");
-                return;
-            }
-            else {
-                Visits visits = new Visits(dateTimePicker.getValue(), imie.getValue(), opis.getValue(), comboBox.getValue().toString());
-                reservationService.addReservationWithoutLogin(visits);
-                Notification.show("Gratulacje, udalo sie zarezerwować wizytę!");
-                UI.getCurrent().getPage().setLocation("/");
-            }
-        });
         add(button);
 
     }

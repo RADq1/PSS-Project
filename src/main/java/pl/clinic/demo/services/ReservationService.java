@@ -18,4 +18,9 @@ public class ReservationService {
         System.out.println("rezerwacja");
         visitRepo.save(visits);
     }
+
+//    public void addReservationWithLogin(Visits visits){
+//        System.out.println("rezerwacja");
+//        visitRepo.save(visits);
+//    }
 }

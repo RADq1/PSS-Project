@@ -33,12 +33,24 @@ public class Visits {
         this.gatunek = gatunek;
     }
 
+    //konstruktor do rejestracji wizyt bez rejestracji konta
     public Visits(LocalDateTime dateTime, String imie, String opis, String gatunek) {
         this.dateTime = dateTime;
         this.imie = imie;
         this.opis = opis;
         this.gatunek = gatunek;
     }
+
+    //konstruktor do rejestracji wizyt po zalogowaniu
+    //Visits visits = new Visits(dateTimePicker.getValue(), imie.getValue(), opis.getValue(), comboBox.getValue().toString(), user);
+    public Visits(LocalDateTime dateTime, String imie, String opis, String gatunek, Users user) {
+        this.dateTime = dateTime;
+        this.imie = imie;
+        this.opis = opis;
+        this.gatunek = gatunek;
+        this.user = user;
+    }
+
 
     public Visits() {
     }
@@ -89,5 +101,17 @@ public class Visits {
 
     public void setUser(Users user) {
         this.user = user;
+    }
+
+    @Override
+    public String toString() {
+        return "Visits{" +
+                "idVisit=" + idVisit +
+                ", dateTime=" + dateTime +
+                ", imie='" + imie + '\'' +
+                ", opis='" + opis + '\'' +
+                ", gatunek='" + gatunek + '\'' +
+                ", user=" + user +
+                '}';
     }
 }
