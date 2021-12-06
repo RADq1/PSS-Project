@@ -1,6 +1,7 @@
 package pl.clinic.demo.front;
 
 import com.vaadin.flow.component.UI;
+import com.vaadin.flow.component.accordion.Accordion;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.html.*;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
@@ -43,14 +44,50 @@ public class AboutUs extends VerticalLayout {
         add(tabs);
 
         //TODO OPIS LEKARZY, LECZNICY WETERYNARYJNEJ ITP.
+        //TODO KONTAKT
+        //Sekcja Adama
+        Accordion accordion = new Accordion();
 
-        H3 h3 = new H3("Lekarze kliniki weterynaryjnej w Fordonie");
-        add(h3);
+        Span name = new Span("lek. wet. Adam Krzysztof Gawryś");
+        Span email = new Span("adagaw@wp.pl");
+        Span specialization = new Span("Specjalista chorób psów i kotów – Dermatologia / USG / Interna");
         Image image = new Image("https://i.imgur.com/gtU3dRG.png","Doktor Adam");
         image.setMaxHeight("400px");
         image.setMaxWidth("400px");
-        H5 h5 = new H5("lek. wet. Adam Krzysztof Gawryś | Specjalista chorób psów i kotów – Dermatologia / USG / Interna");
-        add(image, h5);
-        //https://i.imgur.com/iIaBW0F.gif
+
+        VerticalLayout adamLayout = new VerticalLayout(name, email,specialization,image);
+        adamLayout.setSpacing(false);
+        adamLayout.setPadding(false);
+
+        accordion.add("lek. wet. Adam Krzysztof Gawryś", adamLayout);
+        add(accordion);
+
+        //Sekcja Roberta
+        Accordion accordion1 = new Accordion();
+
+        Span name1 = new Span("lek. wet. Robert Głośnicki");
+        Span email1 = new Span("robglo@wp.pl");
+        Span specialization1 = new Span("Specjalista chorób psów i kotów – Dermatologia / USG / Interna");
+
+        VerticalLayout robertLayout = new VerticalLayout(name1, email1,specialization1);
+        robertLayout.setSpacing(false);
+        robertLayout.setPadding(false);
+
+        accordion1.add("lek. wet. Robert Głośnicki", robertLayout);
+        add(accordion1);
+        //Kontakt
+        Accordion kontakt = new Accordion();
+
+        Span name2 = new Span("Klinika weterynaryjna w Fordonie");
+        Span email2 = new Span("fordonWet@gmail.com");
+        Span phone = new Span("997-400-300");
+        Span adress = new Span("Ul. Fordońska 431");
+
+        VerticalLayout contactLayout = new VerticalLayout(name2, email2, phone, adress);
+        adamLayout.setSpacing(false);
+        adamLayout.setPadding(false);
+
+        kontakt.add("Kontakt", contactLayout);
+        add(kontakt);
     }
 }

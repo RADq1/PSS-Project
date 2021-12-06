@@ -50,7 +50,9 @@ public class LoginPage extends VerticalLayout {
 
         Button btnLogin = new Button("Zaloguj się");
 
-        btnLogin.addClickListener(event -> {});
+        btnLogin.addClickListener(event -> {
+
+        });
 
     }
 

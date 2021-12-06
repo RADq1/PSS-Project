@@ -16,7 +16,6 @@ public class StaleWBazieDanych {
             veterinarianRepo.save(new Veterinarians("Robert", "Głośnicki", "Neurologia"));
             veterinarianRepo.save(new Veterinarians("Dawid", "Kleina", "Dermatologia"));
             veterinarianRepo.save(new Veterinarians("Adam", "Gawryś", "Okulistyka"));
-
         };
     }
 
