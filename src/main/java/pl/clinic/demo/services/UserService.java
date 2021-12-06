@@ -27,4 +27,10 @@ public class UserService {
     {
         return userRepo.findByLogin(login);
     }
+    public Optional<Users> checkPassword(String password)
+    {
+        return userRepo.findByPassword(password);
+    }
+
+
 }

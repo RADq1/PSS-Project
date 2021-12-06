@@ -31,7 +31,6 @@ public class Register extends VerticalLayout {
     @Autowired
     UserService userService;
     Button button;
-    Button reservationButton;
     @PostConstruct
     private void init(){
         //menu główne
@@ -71,29 +70,44 @@ public class Register extends VerticalLayout {
 
                 Optional emailToCheck = userService.checkEmail(email.getValue());
                 Optional usernameToCheck = userService.checkLogin(username.getValue());
-                //Sprawdzenie, czy podany email istnieje juz w bazie danych
-            if(firstName.getValue() == null && lastName.getValue() == null && username.getValue() == null && password.getValue() == null && email.getValue() == null) {
-                //System.out.println("Wszystkie pola są wypełnione");
-                if (emailToCheck.isEmpty()) {
-                    //Sprawdzenie, czy podany login(username) istnieje juz w bazie danych
-                    if (usernameToCheck.isEmpty()) {
-                        Users user = new Users(firstName.getValue(), lastName.getValue(), username.getValue(), password.getValue(), email.getValue());//String name, String surName, String login, String password, String email
-                        userService.registerUser(user);
-                        Notification.show("Witaj," + firstName.getValue() + "Poprawnie założono konto");
-                    } else {
-//                        System.out.println("Taki uzytkownik jest zajety");
-                        Notification.show("Taki uzytkownik jest zajety");
+
+                //Sprawdzenie poprawnosci formularza
+                if(firstName.isEmpty() || lastName.isEmpty() || username.isEmpty() || password.isEmpty() || email.isEmpty()) {
+                    if(firstName.isEmpty()){
+                        Notification.show("Nie wpisales imienia");
                     }
-                } else {
-//                    System.out.println("Email juz istnieje");
-                    Notification.show("Email juz istnieje");
+                    if(lastName.isEmpty()){
+                        Notification.show("Nie wpisales nazwiska");
+                    }
+                    if(username.isEmpty()){
+                        Notification.show("Nie wpisales loginu");
+                    }
+                    if(password.isEmpty()){
+                        Notification.show("Nie wpisales hasla");
+                    }
+                    if(email.isEmpty()){
+                        Notification.show("Nie wpisales e-maila");
+                    }
                 }
-            }
-            else{
-                Notification.show("Wszystkie pola są obowiązkowe!");
-            }
+                else{
+                        System.out.println("Wszystkie pola są wypełnione");
+                        if (emailToCheck.isEmpty()) {
+                            //Sprawdzenie, czy podany login(username) istnieje juz w bazie danych
+                            if (usernameToCheck.isEmpty()) {
+                                Users user = new Users(firstName.getValue(), lastName.getValue(), username.getValue(), password.getValue(), email.getValue());//String name, String surName, String login, String password, String email
+                                userService.registerUser(user);
+                                Notification.show("Witaj," + firstName.getValue() + " Poprawnie założono konto, mozesz się zalogować");
+                            } else {
+                                Notification.show("Taki uzytkownik jest zajety");
+                            }
+                        } else {
+                            Notification.show("Email juz istnieje");
+                        }
+                    }
         });
         add(button);
+
+
     }
 
     }
